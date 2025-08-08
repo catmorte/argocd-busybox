@@ -16,5 +16,6 @@ spec:
     spec:
       containers:
         - name: busybox
-          image: busybox
+          image: busybox:latest
+          imagePullPolicy: IfNotPresent
           command: ["sleep", "3600"]
