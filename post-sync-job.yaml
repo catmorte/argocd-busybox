@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app-slack-notification
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: slack-notification
+        image: alpine:latest
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          echo "Application Name: $ARGOCD_APP_NAME"
+          echo "Namespace: $ARGOCD_APP_NAMESPACE"
+          echo "Revision: $ARGOCD_APP_REVISION"
+        env:
+        - name: ARGOCD_APP_REVISION
+          value: "v1.0.0"
+        - name: ARGOCD_APP_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: ARGOCD_APP_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['argocd.argoproj.io/app-name']
+      restartPolicy: Never
+  backoffLimit: 2
+
