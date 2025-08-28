@@ -16,6 +16,7 @@ spec:
         args:
         - |
             #!/bin/bash
+            set -x
             apk update
             apk add curl jq
 
