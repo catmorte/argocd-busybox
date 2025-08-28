@@ -60,7 +60,7 @@ spec:
         - name: ENVIRONMENT
           value: "prod"
         - name: GITHUB_API_URL
-          value: "https://api.github.com/"
+          value: "https://api.github.com"
         - name: REF
           value: "0889a674f0678dfa574dbfb9fc253ed5a5bb755e"
         - name: GITHUB_TOKEN
