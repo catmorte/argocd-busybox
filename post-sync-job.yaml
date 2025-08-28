@@ -16,6 +16,9 @@ spec:
         args:
         - |
             #!/bin/bash
+            apk update
+            apk add curl jq
+
             REPO="${REPO:?REPO is required}"
             OWNER="${OWNER:?OWNER is required}"
             ENVIRONMENT="${ENVIRONMENT:?ENVIRONMENT is required}"
