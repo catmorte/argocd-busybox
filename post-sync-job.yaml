@@ -36,9 +36,9 @@ spec:
                       --arg env "$ENVIRONMENT" \
                       '{ref: $ref, environment: $env, auto_merge: false, required_contexts: []}')")
               
-            STATUS_CODE=$(tail -n1 <<< "$RESPONSE")
+            STATUS_CODE=$(echo  "$RESPONSE" | tail -n1)
             BODY=$(cat /tmp/deploy_response.json)
-            DEPLOYMENT_ID=$(jq -r .id <<< "$BODY")
+            DEPLOYMENT_ID=$(echo "$BODY" | jq -r .id)
               
             if [[ "$STATUS_CODE" -ne 201 || "$DEPLOYMENT_ID" == "null" || -z "$DEPLOYMENT_ID" ]]; then
                 echo "Failed to create deployment (HTTP $STATUS_CODE)"
