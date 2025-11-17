@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: deployment-writer
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: deployment-writer
+          image: deployment-writer:latest
+          env:
+            - name: APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: argocd-notification-secret
+                  key: app_id
+            - name: OWNER
+              value: catmorte
+            - name: REPO
+              value: argocd-busybox
+            - name: REF
+              value: main
+            - name: ENVIRONMENT
+              value: production
+            - name: PRIVATE_KEY_PATH
+              value: "/keys/pk" 
+          volumeMounts:
+            - name: github-app-key
+              mountPath: /keys
+              readOnly: true
+      volumes:
+        - name: github-app-key
+          secret:
+            secretName: argocd-notifications-secret
