@@ -12,7 +12,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: deployment-writer
-          image: k3d-registry.localhost:5000/deployment-writer:latest
+          image: deployment-writer:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: APP_ID
