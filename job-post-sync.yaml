@@ -12,7 +12,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: deployment-writer
-          image: deployment-writer:latest
+          image: image: registry.localhost:5000/deployment-writer:latest
           env:
             - name: APP_ID
               valueFrom:
