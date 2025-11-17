@@ -23,7 +23,7 @@ spec:
             - name: OWNER
               value: catmorte
             - name: REPO
-              value: argocd-busybox
+              value: argocd-busybox-target-repo
             - name: REF
               value: main
             - name: ENVIRONMENT
