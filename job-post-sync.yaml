@@ -13,6 +13,7 @@ spec:
       containers:
         - name: deployment-writer
           image: registry.localhost:5000/deployment-writer:latest
+          imagePullPolicy: IfNotPresent
           env:
             - name: APP_ID
               valueFrom:
