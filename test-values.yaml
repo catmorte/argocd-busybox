@@ -1,0 +1,5 @@
+deployment:
+  owner: "example-owner"
+  repo: "example-repo"
+  sha: "abcdef1234567890abcdef1234567890abcdef12"
+  environment: "production"
